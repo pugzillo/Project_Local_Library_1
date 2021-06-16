@@ -1,4 +1,4 @@
-// Returns the top five
+// Helper Function: Returns the top five for an input array of objects
 function _returnTopFive(array) {
   // Sort in Descending Order
   let sorted = array.sort((value1, value2) => {
@@ -21,7 +21,6 @@ function getBooksBorrowedCount(books) {
   return books.filter((book) => book.borrows[0].returned === false).length;
 }
 
-// Prioritize in refactoring
 function getMostCommonGenres(books) {
   // Object that has genre as key and count of books as value
   let countByBookGenre = books.reduce((object, book) => {
@@ -54,6 +53,7 @@ function getMostPopularAuthors(books, authors) {
   let countByAuthor = books.reduce((object, book) => {
     let authorId = book.authorId;
     let borrowCount = book.borrows.length;
+    // Get count of borrows by author id
     if (!object[authorId]) {
       object[authorId] = 0;
     }
@@ -62,6 +62,7 @@ function getMostPopularAuthors(books, authors) {
     return object;
   }, {});
 
+  // Create an array of objects
   const borrowsByAuthor = Object.keys(countByAuthor).map((authorID) => {
     const author = authors.find((author) => String(author.id) === authorID);
     return {
