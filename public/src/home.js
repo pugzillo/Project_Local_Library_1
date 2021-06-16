@@ -65,8 +65,9 @@ function getMostPopularAuthors(books, authors) {
   // Create an array of objects
   const borrowsByAuthor = Object.keys(countByAuthor).map((authorID) => {
     const author = authors.find((author) => String(author.id) === authorID);
+    const {name:{first, last}} = author;
     return {
-      name: `${author.name.first} ${author.name.last}`,
+      name: `${first} ${last}`,
       count: countByAuthor[authorID],
     };
   });
