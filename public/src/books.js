@@ -14,26 +14,24 @@ function partitionBooksByBorrowedStatus(books) {
     let borrowTransactions = books[book].borrows;
     let returnStatus = borrowTransactions[0].returned; // Latest return status
 
-    if (returnStatus) {
-      returnedBooks.push(books[book]);
-    } else {
-      unreturnedBooks.push(books[book]);
-    }
+    // Sorts books based on return status
+    returnStatus
+      ? returnedBooks.push(books[book])
+      : unreturnedBooks.push(books[book]);
   }
 
   return [unreturnedBooks, returnedBooks];
 }
 
 function getBorrowersForBook(book, accounts) {
-  let borrowers = [];
   let borrowTransactions = book.borrows;
 
-  for (let transaction of borrowTransactions) {
-    borrowers.push({
+  let borrowers = borrowTransactions.map((transaction) => {
+    return {
       ...transaction,
-      ...accounts.find((account) => account.id === transaction.id),
-    });
-  }
+      ...accounts.find((account) => account.id === transaction.id), // finds account info on author id of focus
+    };
+  });
   return borrowers.slice(0, 10);
 }
 
