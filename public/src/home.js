@@ -1,7 +1,3 @@
-const books = require("../../test/fixtures/books.fixture");
-const accounts = require("../../test/fixtures/accounts.fixture");
-const authors = require("../../test/fixtures/authors.fixture");
-
 // Returns the top five
 function _returnTopFive(array) {
   // Sort in Descending Order
