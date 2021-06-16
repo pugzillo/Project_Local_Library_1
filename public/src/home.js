@@ -3,7 +3,7 @@ const accounts = require("../../test/fixtures/accounts.fixture");
 const authors = require("../../test/fixtures/authors.fixture");
 
 // Returns the top five
-function returnTopFive(array) {
+function _returnTopFive(array) {
   // Sort in Descending Order
   let sorted = array.sort((value1, value2) => {
     return value1.count < value2.count ? 1 : -1;
@@ -40,7 +40,7 @@ function getMostCommonGenres(books) {
     count: countByBookGenre[bookGenre],
   }));
 
-  return returnTopFive(allGenres);
+  return _returnTopFive(allGenres);
 }
 
 function getMostPopularBooks(books) {
@@ -74,7 +74,7 @@ function getMostPopularAuthors(books, authors) {
     };
   });
 
-  return returnTopFive(borrowsByAuthor);
+  return _returnTopFive(borrowsByAuthor);
 }
 
 module.exports = {
